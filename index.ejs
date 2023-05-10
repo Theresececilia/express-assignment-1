@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Movies</title>
+</head>
+<body>
+  <div id="moviesContainer">
+    <% moviesData.forEach(function(movie) { %>
+      <h2><%= movie.title %></h2>
+      <p><%= movie.description %></p>
+      <img src="<%= movie.posterUrl %>" alt="<%= movie.title %> Poster">
+    <% }) %>
+  </div>
+</body>
+</html>
