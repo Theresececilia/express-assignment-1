@@ -26,27 +26,51 @@ router.get('/:id', (req, res) => {
 // Add data
 let nextId = 7
 router.post('/', (req, res) => {
-    const movie = req.body.movie
-    const newMovie = { ...movie, id: nextId }
+  const movie = req.body.movie
 
-    nextId++
+  if (!movie.title || !movie.year || !movie.released || !movie.genre) {
+    return res
+      .status(400)
+      .json({ message: 'You need to add title, year, released, and genre at minimum.' })
+  }
 
-   movies.push(newMovie);
+  if(isNaN(movie.year) || isNaN(movie.released)) {
+    return res.status(400).json({message: 'Year and released must be a number.'})
+  }
 
-   console.log(newMovie);
-   res.json(newMovie);
+  const newMovie = { ...movie, id: nextId }
+  nextId++
+  movies.push(newMovie);
+
+  console.log(newMovie);
+  res.json(newMovie);
 })
 
 //Change data
 router.put("/:id", (req,res) => {
   const id = parseInt(req.params.id);
   const movie = req.body.movie
-  const index = movies.findIndex((film) => film.id === id);
+  const index = movies.findIndex((film) => film.id === id)
+
+   if (!movie.title || !movie.year || !movie.released || !movie.genre) {
+     return res
+       .status(400)
+       .json({
+         message:
+           'You need to have a title, year, released, and genre at minimum.',
+       });
+   }
+
+   if (isNaN(movie.year) || isNaN(movie.released)) {
+     return res
+       .status(400)
+       .json({ message: 'Year and released must be a number.' })
+   }
 
   if(index === -1) {
     return res
       .status(404)
-      .json({ message: "I'm sorry. No movie with that id was found." });
+      .json({ message: "I'm sorry. No movie with that id was found." })
   }
 
   const updatedMovie = { ...movies[index], ...movie }
@@ -78,4 +102,4 @@ router.delete("/:id", (req, res) => {
 
 
 
-module.exports = router;
+module.exports = router
