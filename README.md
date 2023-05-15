@@ -67,6 +67,24 @@ Copy code
 
 # API Usage
 
-Please use the provided endpoints to interact with the CRUD API for Studio Ghibli Movies. Ensure that you follow the instructions and provide the required parameters and request bodies where necessary. The API key validation is essential and should be included as a query parameter with the value "5" (e.g., ?apiKey=5).
+Please use the provided endpoints to interact with the CRUD API for Studio Ghibli Movies. Ensure that you follow the instructions and provide the required parameters and request bodies where necessary. The API key validation is essential and should be included as a query parameter with the value "5", "7" or "9" (e.g., ?apiKey=5).
 
-Feel free to explore and test the various CRUD operations available for managing Studio Ghibli movies.
+## To add an API key:
+Make a POST request to the /api-keys endpoint with the new API key in the request body. The request should include the following information:
+```
+Endpoint: POST /api-keys
+Request body: { "apiKey": "your-api-key" }
+``` 
+The server will validate the request and add the API key to the list of valid keys if it meets the requirements.
+
+If the API key is successfully added, the server will respond with a 200 OK status code and a JSON response message indicating that the API key was added successfully.
+
+You can now use the newly added API key in your requests by including it as a query parameter named apiKey, like 
+**?apiKey=your-api-key.**
+
+Note: Replace 'your-api-key' with the actual API key you want to add.
+
+Please ensure to keep your API keys secure and avoid sharing them publicly or exposing them in client-side code.
+
+
+**Feel free to explore and test the various CRUD operations available for managing Studio Ghibli movies.**
