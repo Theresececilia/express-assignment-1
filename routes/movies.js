@@ -24,7 +24,7 @@ router.get('/:id', (req, res) => {
 })
 
 // Add data
-let nextId = 7
+let nextId = 11
 router.post('/', (req, res) => {
   const movie = req.body.movie
 
